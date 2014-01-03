@@ -151,6 +151,7 @@ def render_field(field, layout='', form_group_class=FORM_GROUP_CLASS,
         field_class=field_class,
         label_class=label_class,
         layout=layout,
+        field_id=field.auto_id
     )
     # Return combined content, wrapped in form control
     if field.errors:
@@ -192,7 +193,7 @@ def render_button(content, button_type=None, icon=None):
 
 
 def render_field_and_label(field, label, field_class='',
-                           label_class='', layout='', **kwargs):
+                           label_class='', layout='', field_id='', **kwargs):
     # Default settings for horizontal form
     if layout == 'horizontal':
         if not label_class:
@@ -206,7 +207,7 @@ def render_field_and_label(field, label, field_class='',
     if field_class:
         html = '<div class="{klass}">{html}</div>'.format(klass=field_class, html=html)
     if label:
-        html = render_label(label, label_class=label_class) + html
+        html = render_label(label, label_for=field_id, label_class=label_class) + html
     return html
 
 
